@@ -1,0 +1,221 @@
+/* Overlay de modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px; /* espacio para móviles */
+  box-sizing: border-box;
+}
+
+.sub{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/* Evita que el modal se salga de la pantalla */
+.modal-overlay {
+  overflow-y: auto;         /* permite scroll vertical */
+  align-items: flex-start;  /* evita que se corte arriba */
+  padding-top: 40px;        /* espacio arriba */
+  padding-bottom: 40px;     /* espacio abajo */
+}
+
+/* Limita el alto del contenedor para que nunca se desborde */
+.modal-bg {
+  max-height: 95vh;         /* nunca más alto que la pantalla */
+  overflow-y: auto;         /* scroll interno si es necesario */
+}
+
+/* Tarjeta interna también limitada */
+.reclamo-card {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Chrome, Edge, Safari */
+.modal-bg::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.modal-bg {
+  scrollbar-width: none;
+}
+
+/* Si también quieres ocultarla en la tarjeta interna */
+.reclamo-card::-webkit-scrollbar {
+  display: none;
+}
+
+.reclamo-card {
+  scrollbar-width: none;
+}
+
+
+/* Fondo con imagen */
+.modal-bg {
+  position: relative;
+  padding:10px 5px 1px 1px;
+  width: 100%;
+  max-width: 450px; /* antes 600px, achicamos */
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('IMG/fondo-reclamos.jpg'); 
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+}
+
+/* Tarjeta del formulario */
+.reclamo-card {
+  position: relative;
+  background: #ffeef5;
+  border-radius: 20px;
+  padding: 20px 15px; /* antes 30px 25px, más compacto */
+  width: 100%;
+  max-width: 400px; /* antes 1000px, mucho más pequeño */
+  z-index: 10;
+  box-shadow: 0 12px 40px rgba(236, 144, 172, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Filtro oscuro */
+.modal-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+form {
+  width: 90%;        /* ocupa el 90% del ancho de su contenedor */
+  max-width: 500px;  /* no crecerá más de 500px en pantallas grandes */
+  margin: 0 auto;    /* centra el formulario */
+  padding: 20px;
+  box-sizing: border-box; /* para que padding no rompa el ancho */
+}
+
+
+
+/* Botón cerrar */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #ffb6d2;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #ff69b4;
+}
+
+/* Texto */
+.reclamo-card h2 {
+  text-align: center;
+  color: #ff2b8a;
+  margin-bottom: 6px;
+  font-size: 1.6rem;
+}
+
+.reclamo-card .sub {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Formulario */
+.form-row {
+  margin-bottom: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #c81e6b;
+  font-size: 0.95rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #ffbad1;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 4px rgba(255,105,180,0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Botones */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  justify-content: space-between;
+}
+
+.btn-enviar {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff69b4 0%, #ec90ac 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-enviar:hover {
+  background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+}
+
+.btn-cancel {
+  padding: 12px;
+  background: #fff;
+  border: 2px solid #ffbad1;
+  border-radius: 10px;
+  color: #ff2b8a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #ffb6d2;
+  color: #fff;
+}
+
+/* Responsive */
+@media(max-width: 480px){
+  .reclamo-card {
+    padding: 20px;
+  }
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+}
